@@ -313,7 +313,7 @@
 
         if (fd === 0) {
           const onChar = (c: string) => {
-            //if (this.reading) {
+            // if (this.reading) {
             const buffer = new TextEncoder().encode(c);
             this.onread(buffer.length, buffer);
             // }
@@ -326,8 +326,9 @@
         }
       }
 
-      public onread: (nread: number, buffer: Buffer) => void;
-      public reading: boolean;
+      public onread(nread: number, buffer: Buffer): void { };
+
+      public reading: boolean = false;
 
       public getWindowSize(size: [number, number]): any /*error*/ {
         size[0] = 120; // cols
@@ -434,7 +435,7 @@
     }
 
     class FSReqWrap {
-      public oncomplete: Function;
+      public oncomplete!: Function;
     }
 
     let cwd = "/mnt";
